@@ -14,7 +14,6 @@ function changeBgColor(event) {
 }
 
 function riskItem(event) {
-  console.log('entrou');
   const element = event.target;
   const completed = document.querySelector('.completed');
   if (completed && completed.classList.contains('completed')) {
@@ -36,5 +35,13 @@ function createTask() {
   clearInput();
 }
 
-const button = document.querySelector('#criar-tarefa');
-button.addEventListener('click', createTask);
+function clearTasks() {
+  const taskList = document.querySelector('#lista-tarefas');
+  taskList.innerHTML = '';
+}
+
+const newTaskBtn = document.querySelector('#criar-tarefa');
+newTaskBtn.addEventListener('click', createTask);
+
+const clearBtn = document.querySelector('#apaga-tudo');
+clearBtn.addEventListener('click', clearTasks);
