@@ -4,7 +4,13 @@ function clearInput() {
 
 function changeBgColor(event) {
   const element = event.target;
-  element.style.backgroundColor = 'rgb(128,128,128)';
+  const selected = document.querySelector('.selected');
+  if (selected && selected.classList.contains('selected')) {
+    selected.classList.remove('selected');
+  }
+  if (!element.classList.contains('selected') && element !== selected) {
+    element.classList.toggle('selected');
+  }
 }
 
 function createTask() {
