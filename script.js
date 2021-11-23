@@ -13,12 +13,25 @@ function changeBgColor(event) {
   }
 }
 
+function riskItem(event) {
+  console.log('entrou');
+  const element = event.target;
+  const completed = document.querySelector('.completed');
+  if (completed && completed.classList.contains('completed')) {
+    completed.classList.remove('completed');
+  }
+  if (!element.classList.contains('completed') && element !== completed) {
+    element.classList.toggle('completed');
+  }
+}
+
 function createTask() {
   const textInput = document.querySelector('#texto-tarefa').value;
   const taskList = document.querySelector('#lista-tarefas');
   const newli = document.createElement('li');
   newli.innerText = textInput;
   newli.addEventListener('click', changeBgColor);
+  newli.addEventListener('dblclick', riskItem);
   taskList.appendChild(newli);
   clearInput();
 }
