@@ -83,7 +83,6 @@ function moveToUp() {
   const selected = document.querySelector('.selected');
   const previousSelected = selected && selected.previousElementSibling;
   const parentOl = selected && selected.parentNode;
-  console.log(parentOl);
 
   if (!previousSelected) return;
 
@@ -104,3 +103,11 @@ function moveToDown() {
 }
 const moveDownBtn = document.querySelector('#mover-baixo');
 moveDownBtn.addEventListener('click', moveToDown);
+
+function removeSelected() {
+  const selected = document.querySelector('.selected');
+  selected.remove();
+}
+
+const removeSelectedBtn = document.querySelector('#remover-selecionado');
+removeSelectedBtn.addEventListener('click', removeSelected);
