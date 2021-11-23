@@ -73,3 +73,34 @@ function loadTaskList() {
   });
 }
 loadTaskList();
+
+function swapItems(parentNode, itemToMoveUp, itemToMoveDown) {
+  parentNode.insertBefore(itemToMoveUp, itemToMoveDown);
+}
+
+// https://developer.mozilla.org/en-US/docs/Web/API/Node/insertBefore#example_2
+function moveToUp() {
+  const selected = document.querySelector('.selected');
+  const previousSelected = selected && selected.previousElementSibling;
+  const parentOl = selected && selected.parentNode;
+  console.log(parentOl);
+
+  if (!previousSelected) return;
+
+  swapItems(parentOl, selected, previousSelected);
+}
+
+const moveUpBtn = document.querySelector('#mover-cima');
+moveUpBtn.addEventListener('click', moveToUp);
+
+function moveToDown() {
+  const selected = document.querySelector('.selected');
+  const nextElement = selected && selected.nextElementSibling;
+  const parentOl = selected && selected.parentNode;
+
+  if (!nextElement) return;
+
+  swapItems(parentOl, nextElement, selected);
+}
+const moveDownBtn = document.querySelector('#mover-baixo');
+moveDownBtn.addEventListener('click', moveToDown);
