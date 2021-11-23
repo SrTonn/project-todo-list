@@ -15,13 +15,7 @@ function changeBgColor(event) {
 
 function riskItem(event) {
   const element = event.target;
-  const completed = document.querySelector('.completed');
-  if (completed && completed.classList.contains('completed')) {
-    completed.classList.remove('completed');
-  }
-  if (!element.classList.contains('completed') && element !== completed) {
-    element.classList.toggle('completed');
-  }
+  element.classList.toggle('completed');
 }
 
 function createTask() {
