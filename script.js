@@ -34,8 +34,18 @@ function clearTasks() {
   taskList.innerHTML = '';
 }
 
+function removeCompleted() {
+  const completedList = document.querySelectorAll('.completed');
+  completedList.forEach((element) => {
+    element.remove();
+  });
+}
+
 const newTaskBtn = document.querySelector('#criar-tarefa');
 newTaskBtn.addEventListener('click', createTask);
 
 const clearBtn = document.querySelector('#apaga-tudo');
 clearBtn.addEventListener('click', clearTasks);
+
+const removeCompletedBtn = document.querySelector('#remover-finalizados');
+removeCompletedBtn.addEventListener('click', removeCompleted);
