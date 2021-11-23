@@ -61,9 +61,15 @@ const saveTaskBtn = document.querySelector('#salvar-tarefas');
 saveTaskBtn.addEventListener('click', saveTaskList);
 
 // https://gomakethings.com/saving-html-to-localstorage-with-vanilla-js/#:~:text=Save%20the%20HTML%20to%20localStorage%20%23&text=The%20innerHTML%20property%20returns%20the,to%20save%20data%20to%20localStorage%20.
+// https://stackoverflow.com/questions/222841/most-efficient-way-to-convert-an-htmlcollection-to-an-array
 function loadTaskList() {
   const data = localStorage.getItem('data');
   const taskList = document.querySelector(taskListId);
   taskList.innerHTML = data;
+  const liList = Array.from(document.getElementsByTagName('li'));
+  liList.forEach((element) => {
+    element.addEventListener('click', changeBgColor);
+    element.addEventListener('dblclick', riskItem);
+  });
 }
 loadTaskList();
