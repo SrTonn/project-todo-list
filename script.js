@@ -1,7 +1,16 @@
+const textTaskId = '#texto-tarefa';
+const input = document.querySelector(textTaskId);
+const newTaskBtn = document.querySelector('#criar-tarefa');
+const clearBtn = document.querySelector('#apaga-tudo');
+const removeCompletedBtn = document.querySelector('#remover-finalizados');
+const saveTaskBtn = document.querySelector('#salvar-tarefas');
+const moveUpBtn = document.querySelector('#mover-cima');
+const moveDownBtn = document.querySelector('#mover-baixo');
+const removeSelectedBtn = document.querySelector('#remover-selecionado');
 const taskListId = '#lista-tarefas';
 
 function clearInput() {
-  document.querySelector('#texto-tarefa').value = '';
+  document.querySelector(textTaskId).value = '';
 }
 
 function changeBgColor(event) {
@@ -52,18 +61,6 @@ function saveTaskList() {
   localStorage.setItem('data', taskList);
 }
 
-const newTaskBtn = document.querySelector('#criar-tarefa');
-newTaskBtn.addEventListener('click', createTask);
-
-const clearBtn = document.querySelector('#apaga-tudo');
-clearBtn.addEventListener('click', clearTasks);
-
-const removeCompletedBtn = document.querySelector('#remover-finalizados');
-removeCompletedBtn.addEventListener('click', removeCompleted);
-
-const saveTaskBtn = document.querySelector('#salvar-tarefas');
-saveTaskBtn.addEventListener('click', saveTaskList);
-
 // https://gomakethings.com/saving-html-to-localstorage-with-vanilla-js/#:~:text=Save%20the%20HTML%20to%20localStorage%20%23&text=The%20innerHTML%20property%20returns%20the,to%20save%20data%20to%20localStorage%20.
 // https://stackoverflow.com/questions/222841/most-efficient-way-to-convert-an-htmlcollection-to-an-array
 function loadTaskList() {
@@ -93,9 +90,6 @@ function moveToUp() {
   swapItems(parentOl, selected, previousSelected);
 }
 
-const moveUpBtn = document.querySelector('#mover-cima');
-moveUpBtn.addEventListener('click', moveToUp);
-
 function moveToDown() {
   const selected = document.querySelector('.selected');
   const nextElement = selected && selected.nextElementSibling;
@@ -105,8 +99,6 @@ function moveToDown() {
 
   swapItems(parentOl, nextElement, selected);
 }
-const moveDownBtn = document.querySelector('#mover-baixo');
-moveDownBtn.addEventListener('click', moveToDown);
 
 function removeSelected() {
   const selected = document.querySelector('.selected');
@@ -114,3 +106,10 @@ function removeSelected() {
 }
 
 input.addEventListener('keydown', createTask);
+newTaskBtn.addEventListener('click', createTask);
+clearBtn.addEventListener('click', clearTasks);
+removeCompletedBtn.addEventListener('click', removeCompleted);
+saveTaskBtn.addEventListener('click', saveTaskList);
+moveUpBtn.addEventListener('click', moveToUp);
+moveDownBtn.addEventListener('click', moveToDown);
+removeSelectedBtn.addEventListener('click', removeSelected);
