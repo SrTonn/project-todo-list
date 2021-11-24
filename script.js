@@ -10,9 +10,7 @@ function changeBgColor(event) {
   if (selected && selected.classList.contains('selected')) {
     selected.classList.remove('selected');
   }
-  if (!element.classList.contains('selected') && element !== selected) {
-    element.classList.toggle('selected');
-  }
+  element.classList.add('selected');
 }
 
 function riskItem(event) {
