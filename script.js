@@ -18,8 +18,10 @@ function riskItem(event) {
   element.classList.toggle('completed');
 }
 
-function createTask() {
-  const inputElement = document.querySelector('#texto-tarefa');
+function createTask(event) {
+  if (event.key !== 'Enter') return;
+
+  const inputElement = document.querySelector(textTaskId);
   const taskList = document.querySelector(taskListId);
   const newli = document.createElement('li');
 
@@ -111,5 +113,4 @@ function removeSelected() {
   selected.remove();
 }
 
-const removeSelectedBtn = document.querySelector('#remover-selecionado');
-removeSelectedBtn.addEventListener('click', removeSelected);
+input.addEventListener('keydown', createTask);
