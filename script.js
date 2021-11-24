@@ -19,13 +19,17 @@ function riskItem(event) {
 }
 
 function createTask() {
-  const textInput = document.querySelector('#texto-tarefa').value;
+  const inputElement = document.querySelector('#texto-tarefa');
   const taskList = document.querySelector(taskListId);
   const newli = document.createElement('li');
-  newli.innerText = textInput;
+
+  inputElement.focus();
+
+  newli.innerText = inputElement.value;
   newli.addEventListener('click', changeBgColor);
   newli.addEventListener('dblclick', riskItem);
   taskList.appendChild(newli);
+
   clearInput();
 }
 
