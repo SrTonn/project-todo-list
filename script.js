@@ -27,20 +27,23 @@ function riskItem(event) {
   element.classList.toggle('completed');
 }
 
+function generateLi(inputValue, parentNode) {
+  const newli = document.createElement('li');
+  newli.innerText = inputValue;
+  newli.addEventListener('click', changeBgColor);
+  newli.addEventListener('dblclick', riskItem);
+  parentNode.appendChild(newli);
+}
+
 function createTask(event) {
   if (event.key && event.key !== 'Enter') return;
 
   const inputElement = document.querySelector(textTaskId);
   const taskList = document.querySelector(taskListId);
-  const newli = document.createElement('li');
 
   inputElement.focus();
 
-  newli.innerText = inputElement.value;
-  newli.addEventListener('click', changeBgColor);
-  newli.addEventListener('dblclick', riskItem);
-  taskList.appendChild(newli);
-
+  generateLi(inputElement.value, taskList);
   clearInput();
 }
 
