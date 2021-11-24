@@ -1,7 +1,37 @@
+h1 , main {
+  text-align: center;
+}
+
+main {
+  background-color: white;
+  width: 70%;
+  max-width: 600px;
+  border-radius: 5px;
+  margin: 0 auto;
+  margin-top: 45px;
+  padding: 5px;
+}
+
+body {
+  background-color: teal;
+}
+
 .selected {
   background-color: gray;
 }
 
 .completed {
   text-decoration: line-through;
+}
+
+#ol-container {
+  max-width: 80%;
+  /* background-color: red; */
+  margin: 0 auto;
+  list-style-position: inside;
+  text-align: left;
+}
+
+li {
+  padding: 10px;
 }
