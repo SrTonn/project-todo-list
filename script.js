@@ -105,7 +105,7 @@ function moveToDown() {
 
 function removeSelected() {
   const selected = document.querySelector('.selected');
-  selected.remove();
+  if (selected) selected.remove();
 }
 
 input.addEventListener('keydown', createTask);
