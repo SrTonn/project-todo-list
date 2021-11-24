@@ -28,7 +28,7 @@ function riskItem(event) {
 }
 
 function createTask(event) {
-  if (event.key !== 'Enter') return;
+  if (event.key && event.key !== 'Enter') return;
 
   const inputElement = document.querySelector(textTaskId);
   const taskList = document.querySelector(taskListId);
