@@ -41,7 +41,7 @@ function createTask(event) {
   const taskList = document.querySelector(taskListId);
 
   if (event.key && event.key !== 'Enter') return;
-  if (inputElement.value === '') return;
+  if (!inputElement.validity.valid) return;
 
   inputElement.focus();
 
