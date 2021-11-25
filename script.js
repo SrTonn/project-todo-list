@@ -8,6 +8,7 @@ const moveUpBtn = document.querySelector('#mover-cima');
 const moveDownBtn = document.querySelector('#mover-baixo');
 const removeSelectedBtn = document.querySelector('#remover-selecionado');
 const taskListId = '#lista-tarefas';
+const tagOl = document.querySelector(taskListId);
 
 function clearInput() {
   document.querySelector(textTaskId).value = '';
@@ -16,6 +17,7 @@ function clearInput() {
 function changeBgColor(event) {
   const element = event.target;
   const selected = document.querySelector('.selected');
+  if (element === tagOl) return;
   if (selected && selected.classList.contains('selected')) {
     selected.classList.remove('selected');
   }
@@ -24,22 +26,22 @@ function changeBgColor(event) {
 
 function riskItem(event) {
   const element = event.target;
+  if (element === tagOl) return;
   element.classList.toggle('completed');
 }
 
 function generateLi(inputValue, parentNode) {
   const newli = document.createElement('li');
   newli.innerText = inputValue;
-  newli.addEventListener('click', changeBgColor);
-  newli.addEventListener('dblclick', riskItem);
   parentNode.appendChild(newli);
 }
 
 function createTask(event) {
-  if (event.key && event.key !== 'Enter') return;
-
   const inputElement = document.querySelector(textTaskId);
   const taskList = document.querySelector(taskListId);
+
+  if (event.key && event.key !== 'Enter') return;
+  if (inputElement.value === '') return;
 
   inputElement.focus();
 
@@ -48,8 +50,7 @@ function createTask(event) {
 }
 
 function clearTasks() {
-  const taskList = document.querySelector(taskListId);
-  taskList.innerHTML = '';
+  tagOl.innerHTML = '';
 }
 
 function removeCompleted() {
@@ -65,16 +66,9 @@ function saveTaskList() {
 }
 
 // https://gomakethings.com/saving-html-to-localstorage-with-vanilla-js/#:~:text=Save%20the%20HTML%20to%20localStorage%20%23&text=The%20innerHTML%20property%20returns%20the,to%20save%20data%20to%20localStorage%20.
-// https://stackoverflow.com/questions/222841/most-efficient-way-to-convert-an-htmlcollection-to-an-array
 function loadTaskList() {
   const data = localStorage.getItem('data');
-  const taskList = document.querySelector(taskListId);
-  taskList.innerHTML = data;
-  const liList = Array.from(document.getElementsByTagName('li'));
-  liList.forEach((element) => {
-    element.addEventListener('click', changeBgColor);
-    element.addEventListener('dblclick', riskItem);
-  });
+  tagOl.innerHTML = data;
 }
 loadTaskList();
 
@@ -86,21 +80,19 @@ function swapItems(parentNode, itemToMoveUp, itemToMoveDown) {
 function moveToUp() {
   const selected = document.querySelector('.selected');
   const previousSelected = selected && selected.previousElementSibling;
-  const parentOl = selected && selected.parentNode;
 
   if (!previousSelected) return;
 
-  swapItems(parentOl, selected, previousSelected);
+  swapItems(tagOl, selected, previousSelected);
 }
 
 function moveToDown() {
   const selected = document.querySelector('.selected');
   const nextElement = selected && selected.nextElementSibling;
-  const parentOl = selected && selected.parentNode;
 
   if (!nextElement) return;
 
-  swapItems(parentOl, nextElement, selected);
+  swapItems(tagOl, nextElement, selected);
 }
 
 function removeSelected() {
@@ -116,3 +108,5 @@ saveTaskBtn.addEventListener('click', saveTaskList);
 moveUpBtn.addEventListener('click', moveToUp);
 moveDownBtn.addEventListener('click', moveToDown);
 removeSelectedBtn.addEventListener('click', removeSelected);
+tagOl.addEventListener('click', changeBgColor);
+tagOl.addEventListener('dblclick', riskItem);
